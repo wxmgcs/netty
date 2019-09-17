@@ -74,6 +74,8 @@ public abstract class ByteToMessageDecoder extends ChannelInboundHandlerAdapter 
     /**
      * Cumulate {@link ByteBuf}s by merge them into one {@link ByteBuf}'s, using memory copies.
      */
+    // MERGE_CUMULATOR 的原理是每次都将读取到的数据通过内存拷贝的方式，拼接到一个大的字节容器中，
+    // 这个字节容器在 ByteToMessageDecoder中叫做 cumulation
     public static final Cumulator MERGE_CUMULATOR = new Cumulator() {
         @Override
         public ByteBuf cumulate(ByteBufAllocator alloc, ByteBuf cumulation, ByteBuf in) {
